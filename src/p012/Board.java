@@ -6,7 +6,6 @@ import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import javax.swing.JPanel;
 
-
 @SuppressWarnings("serial")
 public class Board extends JPanel {
 
@@ -29,8 +28,7 @@ public class Board extends JPanel {
 		Graphics2D g2d = (Graphics2D) g;
 		if (aBalls != null) {
 			for (int i = 0; i < aBalls.length; i++) {
-				g2d.drawImage(aBalls[i].getImage(), aBalls[i].getX(),
-						aBalls[i].getY(), this);
+				g2d.drawImage(aBalls[i].getImage(), aBalls[i].getX(), aBalls[i].getY(), this);
 			}
 		}
 		g2d.setColor(java.awt.Color.white);
