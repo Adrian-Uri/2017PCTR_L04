@@ -11,11 +11,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @SuppressWarnings("serial")
 public class Billiards extends JFrame {
 
 	private static ExecutorService e;
+	
 	private int contaBolas=0;
 	
 	public static int Width = 800;
@@ -56,9 +58,11 @@ public class Billiards extends JFrame {
 		setTitle("Práctica programación concurrente objetos móviles independientes");
 		setResizable(false);
 		setVisible(true);
+		e=Executors.newCachedThreadPool();
 	}
 
 	private void initBalls() {
+		balls=new Ball[N_BALL];
 		for (int i = 0; i < N_BALL; i++) {
 			balls[i]=new Ball();
 		}
@@ -68,8 +72,12 @@ public class Billiards extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Code is executed when start button is pushed
-			e.execute(new Hilo(balls[contaBolas]));
+			if(contaBolas < N_BALL){
+			e.submit(new Hilo(balls[contaBolas]));
 			contaBolas ++;
+			}else{
+				System.out.println("no se pueden lanzar mas bolas");
+			}
 		}
 	}
 
