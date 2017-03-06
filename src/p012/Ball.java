@@ -35,6 +35,7 @@ public class Ball {
 	}
 
 	public void reflect() {
+		double fiaux=fi;
 		if (Math.abs(x + 32 - Board.RIGHTBOARD) < Math.abs(dx)) {
 			fi = Math.PI - fi;
 		}
@@ -47,7 +48,7 @@ public class Ball {
 		if (Math.abs(y - Board.TOPBOARD) < Math.abs(dy)) {
 			fi = -fi;
 		}
-		// TODO Check postcondition
+		assert fi!=fiaux;
 	}
 
 	public int getX() {
