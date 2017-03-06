@@ -30,7 +30,7 @@ public class Ball {
 		}
 		x += dx;
 		y += dy;
-		// TODO Check postcondition
+		assert x < Board.RIGHTBOARD && x > Board.LEFTBOARD && y > Board.BOTTOMBOARD && y< Board.TOPBOARD; 
 	}
 
 	public void reflect() {
