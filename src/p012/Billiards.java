@@ -70,9 +70,6 @@ public class Billiards extends JFrame {
 			// TODO Code is executed when start button is pushed
 			e.execute(new Hilo(balls[contaBolas]));
 			contaBolas ++;
-			
-			
-
 		}
 	}
 
@@ -87,11 +84,7 @@ public class Billiards extends JFrame {
 		public void run() {
 			while(true){
 				mibola.move();
-				try {
-					Thread.sleep(1000/60);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}//60 fps
+				mibola.reflect();
 			}
 		}
 		
@@ -100,7 +93,7 @@ public class Billiards extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Code is executed when stop button is pushed
-
+			e.shutdown();
 		}
 	}
 
