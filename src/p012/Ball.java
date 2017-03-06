@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 
 //TODO Transform the code to be used safely in a concurrent context.  
 public class Ball {
-	// TODO Find an archive named Ball.png
+	
 	private String Ball = "pelota.png";
 
 	private double x, y, dx, dy;
