@@ -71,6 +71,19 @@ public class Billiards extends JFrame {
 		}
 	}
 
+	private class Hilo implements Runnable{
+		private Ball mibola;
+		
+		public Hilo(Ball bola){
+			mibola=bola;
+		}
+		
+		@Override
+		public void run() {
+			mibola.move();
+		}
+		
+	}
 	private class StopListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
