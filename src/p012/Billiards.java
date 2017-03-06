@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 @SuppressWarnings("serial")
 public class Billiards extends JFrame {
@@ -21,7 +22,7 @@ public class Billiards extends JFrame {
 	private Board board;
 
 	// TODO update with number of group label. See practice statement.
-	private final int N_BALL = 2;
+	private final int N_BALL = 4 + 3;
 	private Ball[] balls;
 
 	public Billiards() {
@@ -55,7 +56,9 @@ public class Billiards extends JFrame {
 	}
 
 	private void initBalls() {
-		// TODO init balls
+		for (int i = 0; i < N_BALL; i++) {
+			balls[i]=new Ball();
+		}
 	}
 
 	private class StartListener implements ActionListener {
