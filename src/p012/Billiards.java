@@ -54,7 +54,7 @@ public class Billiards extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(Width, Height);
 		setLocationRelativeTo(null);
-		setTitle("PrÃ¡ctica programaciÃ³n concurrente objetos mÃ³viles independientes");
+		setTitle("Práctica programación concurrente objetos móviles independientes");
 		setResizable(false);
 		setVisible(true);
 		e=Executors.newCachedThreadPool();
@@ -94,6 +94,11 @@ public class Billiards extends JFrame {
 				mibola.reflect();
 				board.setBalls(balls);
 				board.paint(getGraphics());
+				try {
+					Thread.sleep(1000/60);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		
