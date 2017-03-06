@@ -10,10 +10,14 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import java.util.concurrent.ExecutorService;
 
 @SuppressWarnings("serial")
 public class Billiards extends JFrame {
 
+	private static ExecutorService e;
+	private int contaBolas=0;
+	
 	public static int Width = 800;
 	public static int Height = 600;
 
@@ -64,7 +68,8 @@ public class Billiards extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Code is executed when start button is pushed
-			
+			e.execute(new Hilo(balls[contaBolas]));
+			contaBolas ++;
 			
 			
 
@@ -80,7 +85,14 @@ public class Billiards extends JFrame {
 		
 		@Override
 		public void run() {
-			mibola.move();
+			while(true){
+				mibola.move();
+				try {
+					Thread.sleep(1000/60);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}//60 fps
+			}
 		}
 		
 	}
