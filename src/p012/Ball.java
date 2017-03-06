@@ -11,6 +11,7 @@ public class Ball {
 	private double v, fi;
 	private Image image;
 	
+	
 	public Ball() {
 		ImageIcon ii = new ImageIcon(this.getClass().getResource(Ball));
 		image = ii.getImage();
