@@ -57,9 +57,13 @@ public class Billiards extends JFrame {
 		setTitle("Práctica programación concurrente objetos móviles independientes");
 		setResizable(false);
 		setVisible(true);
-		e=Executors.newCachedThreadPool();
+		
 	}
 
+	/**
+	 * inicializa el array de bolas.
+	 * 
+	 */
 	private void initBalls() {
 		balls=new Ball[N_BALL];
 		for (int i = 0; i < N_BALL; i++) {
@@ -67,19 +71,32 @@ public class Billiards extends JFrame {
 		}
 	}
 
+	/**
+	 * clase que se ejecuta al accionar el boton lanzar.
+	 *
+	 */
 	private class StartListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Code is executed when start button is pushed
+			e=Executors.newCachedThreadPool();
 			if(contaBolas < N_BALL){
-			e.submit(new Hilo(balls[contaBolas]));
-			contaBolas ++;
+				for(int i=0;i<N_BALL;i++){
+					e.submit(new Hilo(balls[i]));
+					contaBolas ++;
+				}
 			}else{
 				System.out.println("no se pueden lanzar mas bolas");
 			}
 		}
 	}
 
+	/**
+	 * Clase que contiene los hilos que se van a lanzar.
+	 * 
+	 * @author Daniel Delgado Santamria
+	 * @author Adrian Varona Puente
+	 *
+	 */
 	private class Hilo implements Runnable{
 		private Ball mibola;
 		
@@ -87,9 +104,14 @@ public class Billiards extends JFrame {
 			mibola=bola;
 		}
 		
+		/**
+		 * mueve las bolas.
+		 *   
+		 */
 		@Override
 		public void run() {
-			while(true){
+			boolean bandera=true;
+			while(bandera){
 				mibola.move();
 				mibola.reflect();
 				board.setBalls(balls);
@@ -97,20 +119,32 @@ public class Billiards extends JFrame {
 				try {
 					Thread.sleep(1000/60);
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+					bandera=false;
+					System.out.println("Hilo detenido");
+					contaBolas=0;
 				}
 			}
 		}
-		
 	}
+	
+	/**
+	 * se ejecuta cuando pulsas el boton de parar.
+	 * 
+	 */
 	private class StopListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Code is executed when stop button is pushed
-			e.shutdown();
+			
+			e.shutdownNow();
 		}
 	}
 
+	/**
+	 * inicia el billar.
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		new Billiards();
 	}
