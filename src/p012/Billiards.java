@@ -115,7 +115,7 @@ public class Billiards extends JFrame {
 				mibola.move();
 				mibola.reflect();
 				board.setBalls(balls);
-				board.paint(getGraphics());
+				board.repaint();
 				try {
 					Thread.sleep(1000/60);
 				} catch (InterruptedException e) {
